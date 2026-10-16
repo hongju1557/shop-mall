@@ -1,8 +1,15 @@
 import express from 'express'
 import mysql from 'mysql2'
+import cors from 'cors'
 
 const app = express();
 const PORT = 8000;
+
+//cors(Cross-Origin Resource Sharing 교차출처 리소스 공유)
+//브라우저가 보안상의 이유로 요청을 차단
+app.use(cors({
+    origin: "http://localhost:5173",
+}))
 
 app.use(express.json()); // JSON 요청 처리
 app.use(express.urlencoded({ extended: true })); // 폼 요청 처리
@@ -48,7 +55,7 @@ app.get("/api/products",(req,res) =>{
     db.query(sql, (err, results) => {
         if(err){
             console.log("상품 조회 오류", err);
-            res.send("상품 조회 중 오류 발생");
+            res.status(500).json({ message: "상품 조회 중 오류 발생" });
             return;
         }
         res.json(results);
@@ -61,8 +68,11 @@ app.get("/api/products/:id", (req, res) => {
     db.query(sql, [productId], (err, results) => {
         if(err){
             console.log("상품 조회 에러: ", err);
-            res.send("상품 조회 중 오류가 발생했습니다.");
+            res.status(500).json({ message: "상품 조회 중 오류가 발생했습니다." });
             return;
+        }
+        if (results.length === 0) {
+            return res.status(404).json({ message: "상품을 찾을 수 없습니다." });
         }
         res.json(results[0]);  //1건(맨 앞)
     });

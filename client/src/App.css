@@ -1,0 +1,164 @@
+.header {
+  background-color: #333;
+  padding: 20px;
+}
+
+.header a{
+  color: #e1ffff;
+  margin: 0 16px;
+  text-decoration: none;
+}
+
+.header a:hover {
+  color: #eee;
+}
+/* .main{
+  padding: 20px;
+} */
+
+/* .product-list{
+  width: 1000px;
+  margin: 16px auto;
+} */
+
+.container {
+  width: 1100px;
+  margin: 30px auto;
+}
+
+.product-list {
+  padding-top: 24px;
+}
+
+.product-list > h2 {
+  margin-bottom: 16px;
+}
+
+.product-list table {
+  width: 60%;
+  margin: 0 auto;
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+}
+.product-list table th{
+  border: 1px solid #ccc;
+}
+
+.product-info .detail{
+  width: 50%;
+  margin: 0 auto;
+  background-color: aqua;
+  padding: 20px;
+}
+
+.product-info .detail p {
+  margin: 10px;
+}
+
+.product-info button {
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+.add-product form{
+  width: 40%;
+  margin: 20px auto;
+}
+
+.add-product label {
+  display: block;
+  margin-bottom: 8px;
+  text-align: left;
+}
+
+.add-product form input,.add-product form textarea {
+  width: 100%;
+}
+
+.add-product form button {
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+.product-list .btn-add button {
+  padding: 8px 16px;
+}
+
+.product-list .btn-add {
+  text-align: right;
+  margin-right: 20%;
+}
+
+.sign-in form{
+  width: 30%;
+  margin: 20px auto;
+}
+
+.sign-in form input{
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 16px;
+}
+
+.sign-in form button{
+  width: 100%;
+  padding: 8px 12px;
+  margin-left: 3%;
+}
+
+.header .logoutbutton {
+  background: transparent;
+  border: none;
+  padding: 0;
+  color: #e1ffff;
+  margin: 0 16px;
+  font: inherit;
+  letter-spacing: inherit;
+  cursor: pointer;
+}
+
+.header .logoutbutton:hover {
+  color: #eee;
+}
+
+.sign-up form {
+  text-align: left;
+  width: 40%;
+  margin: 20px auto;
+}
+
+.sign-up form select {
+  width: 40%;
+  height: 30px;
+  margin-bottom: 16px;
+}
+
+.sign-up label,
+.sign-up #signup-gender-label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.sign-up form input:not([type="radio"]),
+.sign-up form textarea {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 16px;
+}
+
+.sign-up .gender-options {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.sign-up .gender-options label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 0;
+}
+
+.sign-up .gender-options input[type="radio"] {
+  margin: 0;
+}
