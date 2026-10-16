@@ -1,6 +1,7 @@
 import {Link} from 'react-router-dom'
 import api from '../api/api'
 import { useEffect, useState } from 'react'
+import dayjs from 'dayjs';
 
 const ProductLists = () => {
     const [products, setProducts] = useState([]);
@@ -55,7 +56,7 @@ const ProductLists = () => {
                         </td>
                         <td>{product.price}</td>
                         <td>
-                            {new Date(product.created_at).toLocaleDateString('ko-KR')}
+                            {dayjs(product.created_at).format('YYYY-MM-DD')}
                         </td>
                 
                     </tr>

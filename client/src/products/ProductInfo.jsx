@@ -1,6 +1,7 @@
 import {useParams, useNavigate} from 'react-router-dom'
 import api from '../api/api';
 import { useEffect, useState } from 'react';
+import dayjs from 'dayjs';
 
 const ProductInfo = () => {
     const {id} = useParams();
@@ -37,7 +38,7 @@ const ProductInfo = () => {
                 <p>상품 이름 : {product.product_name}</p>
                 <p>가격 : {product.price}</p>
                 <p>
-                등록일 : {new Date(product.created_at).toLocaleDateString('ko-KR')}
+                등록일 : {dayjs(product.created_at).format('YYYY-MM-DD')}
                 </p>
             </div>}
             <div>
