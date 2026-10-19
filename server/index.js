@@ -20,17 +20,28 @@ app.get('/',(req,res) =>{
     res.send("<h1>API 서버와 DB 연동</h1>")
 })
 
-app.post("/api/products",(req,res) =>{
-    const {productName, price} = req.body; //요청한 속성
-    const sql = "INSERT INTO product(product_name, price) VALUES(?, ?)"
-    db.query(sql, [productName,price], (err,results)=> {
-            if(err){
-            console.log("상품 등록 오류", err);
-            res.send("상품 등록 중 오류 발생");
-            return;
-        } res.send("상품 등록에 성공했습니다")
+app.post("/api/products", (req, res) => {
+    const { productName, price, description } = req.body;
+
+    const sql = `
+        INSERT INTO product(product_name, price, description)
+        VALUES (?, ?, ?)
+    `;
+
+    db.query(sql, [productName, price, description], (err, results) => {
+        if (err) {
+            console.error("상품 등록 오류:", err);
+            return res.status(500).json({
+                message: "상품 등록 중 오류 발생",
+            });
+        }
+
+        res.status(201).json({
+            message: "상품 등록에 성공했습니다",
+            id: results.insertId,
+        });
     });
-})
+});
 
 const db = mysql.createConnection({
     host:"localhost",
@@ -84,14 +95,15 @@ app.get("/api/products/:id", (req, res) => {
 app.put("/api/products/:id",(req,res)=>{
     //수정하려면 이미 존재하는 상품(id)를 가져오기
         const productId = req.params.id;
-        const {productName, price} = req.body;
-        const sql = "UPDATE product SET product_name=?, price=? WHERE id=?"
-        db.query(sql, [productName, price, productId], (err,results) =>{
+        const {productName, price, description} = req.body;
+        const sql = "UPDATE product SET product_name=?, price=?, description=? WHERE id=?"
+        db.query(sql, [productName, price, description, productId], (err,results) =>{
 
             if(err){
-            console.log("상품 조회 에러: ", err);
-            res.send("상품 조회 중 오류가 발생했습니다.");
-            return;
+            console.log("상품 수정 에러: ", err);
+                return res.status(500).json({
+                    message: "상품 수정 중 오류가 발생했습니다."
+                });
         }
             res.send("상품이 성공적으로 수정되었습니다.");
         })
@@ -114,4 +126,38 @@ app.delete("/api/products/:id", (req, res) => {
 app.listen(PORT,()=> {
     console.log(`http://localhost:${PORT}에서 서버 실행중...`);
     
+})
+
+
+//회원 api 개발(rest api)
+//이전 통신방식(get,post)
+//rest api - get,post,put,delete
+//회원 목록
+app.get("/api/users", (req,res) => {
+    const sql = "SELECT * FROM users";
+    db.query(sql,(err, results) => {
+        if(err){
+            console.log("회원 조회 에러 : ", err);
+            res.send("회원 조회 중 오류가 발생했습니다.");
+            return
+        }
+
+        res.json(results); // 프런트(요청)
+    })
+})
+
+//회원 가입
+app.post("/api/users", (req,res) => {
+
+    const {username,password,email} = req.body;
+    const sql = "insert into users(username,password,email) values (?,?,?)"
+    db.query(sql,[username,password,email],(err) => {
+                if(err){
+            console.log("회원 가입 에러 : ", err);
+            res.send("회원 가입 중 오류가 발생했습니다.");
+            return
+        }
+        res.send("회원 가입이 성공적으로 이루어졌습니다.")
+
+    })
 })

@@ -7,6 +7,9 @@ const ProductLists = () => {
     const [products, setProducts] = useState([]);
     const [errorMessage, setErrorMessage] = useState('');
 
+    //검색 키워드 상태관리
+    const[searchKeyword, setSearchKeyword] = useState("");
+
     //db에서 데이터 가져오기
     useEffect(()=> {
         const fetchProducts = async() => {
@@ -26,9 +29,23 @@ const ProductLists = () => {
         fetchProducts();
     },[]);
 
+    //검색된 상품 목록 필터링 구현
+    const filterProducts = products.filter(product => 
+        product.product_name.toLowerCase().includes(searchKeyword.toLowerCase())
+    )
+
     return(
         <div className="product-list">
-            <h2>상품 리스트</h2>
+            {/* 검색 기능 */}
+            <div className='search-bar'>
+                <input type="text"
+                name=""
+                id=""
+                placeholder="상품명으로 검색"
+                onChange={(e) => setSearchKeyword(e.target.value)} />
+            </div>
+
+            {/* <h2>상품 리스트</h2> */}
             {errorMessage && <p role="alert">{errorMessage}</p>}
             <table>
                 <thead>
@@ -48,9 +65,9 @@ const ProductLists = () => {
                     </tr>
                 </thead>
                 <tbody>
-            {products.map((product) =>(
+            {filterProducts.map((product, index) =>(
                     <tr key={product.id}>
-                        <td>{product.id}</td>
+                        <td>{index + 1}</td>
                         <td>
                             <Link to={`/products/${product.id}`}>{product.product_name}</Link>
                         </td>

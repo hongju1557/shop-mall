@@ -60,22 +60,28 @@
   cursor: pointer;
 }
 
-.add-product form{
+.add-product form,
+.updateProduct form {
   width: 40%;
   margin: 20px auto;
 }
 
-.add-product label {
+.add-product label,
+.updateProduct label {
   display: block;
   margin-bottom: 8px;
   text-align: left;
 }
 
-.add-product form input,.add-product form textarea {
+.add-product form input,
+.add-product form textarea,
+.updateProduct form input,
+.updateProduct form textarea {
   width: 100%;
 }
 
-.add-product form button {
+.add-product form button,
+.updateProduct form button {
   padding: 6px 12px;
   cursor: pointer;
 }
@@ -161,4 +167,11 @@
 
 .sign-up .gender-options input[type="radio"] {
   margin: 0;
+}
+
+.product-list .search-bar input {
+  width: 300px;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
 }
