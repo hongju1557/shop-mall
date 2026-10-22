@@ -96,7 +96,7 @@ const navigate = useNavigate();
                     <div>
                         <label htmlFor="signup-password">비밀번호</label>
                         <input 
-                        id="signup-password"
+                        id="signup-password" type="password"
                         name="password"
                         value={formData.password}
                         onChange={handleInputChange}
@@ -126,6 +126,7 @@ const navigate = useNavigate();
                     </div>
                     <div>
                         <button type="submit">가입</button>
+                        <button type="button" onClick={handleCancel}>취소</button>
                     </div>
                 </ul>
 

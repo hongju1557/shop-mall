@@ -87,7 +87,7 @@ const ProductLists = () => {
             </table>
 
             <div className="btn-add">
-                <Link to="/Addproduct">
+                <Link to="/products/new">
                 <button>상품 등록</button>
                 </Link>
             </div>
