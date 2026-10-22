@@ -43,7 +43,7 @@ const SignIn = ({setUserName}) => {
             //비밀번호 확인 (DB에 있는 비밀번호와 외부에서 입력한 비밀번호 비교)
             if (user && user.password === password) {
                 setLoginResult("success");
-                setUserName(user.username);
+                setUserName(user.username, user.role);
                 alert("로그인 되었습니다.")
                 navigate('/'); // 메인 페이지로 이동
             }else{

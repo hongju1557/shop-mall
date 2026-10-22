@@ -9,6 +9,7 @@ import UpdateProduct from './products/UpdateProduct'
 import SignIn from './users/SignIn'
 import { useState } from 'react'
 import SignUp from './users/SignUp'
+import AdminPage from './users/AdminPage'
 
 function App() {
   
@@ -19,14 +20,19 @@ function App() {
   const [username, setUsername] = useState("");
 
   //로그인 핸들러 함수
-  const handleLogin = (username) => {
+  const handleLogin = (username, role) => {
       setIsLoggedIn(true);
       setUsername(username);
+      setUserRole(role);
   }
+
+  //로그인한 사용자의 권한 관리
+  const [userRole, setUserRole] = useState("");
 
     const handleLogout = () => {
         setIsLoggedIn(false);
         setUsername(""); // 로그아웃시 사용자 선택 초기화
+        setUserRole("");
     }
 
   return (
@@ -37,6 +43,7 @@ function App() {
         isLoggedIn={isLoggedIn}
         username={username}
         onLogout={handleLogout}
+        userRole={userRole}
         ></Header>
         <Routes>
           <Route path='/' element={<Main/>}/>
@@ -46,6 +53,7 @@ function App() {
           <Route path='/products/update/:id' element={<UpdateProduct/>}></Route>
           <Route path='/signin' element={<SignIn setUserName={handleLogin}/>}></Route>
           <Route path='/signup' element={<SignUp/>}></Route>
+          <Route path='/AdminPage' element={<AdminPage userRole={userRole}/>}></Route>
         </Routes>
         </BrowserRouter>
       </section>
