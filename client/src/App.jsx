@@ -45,6 +45,7 @@ function App() {
         onLogout={handleLogout}
         userRole={userRole}
         ></Header>
+        <div className="container">
         <Routes>
           <Route path='/' element={<Main/>}/>
           <Route path='/products' element={<ProductLists/>}></Route>
@@ -55,6 +56,7 @@ function App() {
           <Route path='/signup' element={<SignUp/>}></Route>
           <Route path='/AdminPage' element={<AdminPage userRole={userRole}/>}></Route>
         </Routes>
+        </div>
         </BrowserRouter>
       </section>
     </>

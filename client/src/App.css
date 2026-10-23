@@ -175,3 +175,64 @@
   border: 1px solid #ccc;
   border-radius: 10px;
 }
+
+/* 관리자 페이지 */
+.admin-page {
+  text-align: left;
+}
+
+.admin-page h2 {
+  text-align: center;
+}
+
+.admin-page h3 {
+  margin: 28px 0 12px;
+}
+
+/* 통계 카드 4개 */
+.admin-cards {
+  display: flex;
+  gap: 16px;
+  margin: 20px auto;
+}
+
+.admin-card {
+  flex: 1;
+  padding: 20px 16px;
+  background-color: rgb(2, 175, 2);
+  color: #fff;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.admin-card:hover {
+  background-color: rgb(15, 129, 15);
+}
+
+.admin-card p {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.admin-card strong {
+  font-size: 24px;
+}
+
+/* 최근 상품·회원 목록 표 */
+.admin-page table {
+  width: 100%;
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+.admin-page th,
+.admin-page td {
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+.admin-page thead {
+  background-color: #eee;
+  color: #333;
+}

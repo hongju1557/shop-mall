@@ -51,12 +51,6 @@ const handleSubmit = async (e) => {
                 email: email.trim(),
             });
 
-            // 현재 서버는 실패해도 HTTP 200을 반환하므로
-            // 성공 메시지까지 확인
-            if (response.data !== "회원 가입이 성공적으로 이루어졌습니다.") {
-                alert("회원 가입에 실패했습니다.");
-                return;
-            }
 
             alert("회원 가입이 완료되었습니다.");
             navigate("/signin");

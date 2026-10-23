@@ -142,6 +142,11 @@ app.listen(PORT,()=> {
 //이전 통신방식(get,post)
 //rest api - get,post,put,delete
 //회원 목록
+
+
+
+
+
 app.get("/api/users", (req,res) => {
     const sql = "SELECT * FROM users";
     db.query(sql,(err, results) => {
@@ -156,20 +161,27 @@ app.get("/api/users", (req,res) => {
 })
 
 //회원 가입
-app.post("/api/users", (req,res) => {
+app.post("/api/users", (req, res) => {
+    const { username, password, email } = req.body;
 
-    const {username,password,email} = req.body;
-    const sql = "insert into users(username,password,email) values ($1,$2,$3)"
-    db.query(sql,[username,password,email],(err) => {
-                if(err){
-            console.log("회원 가입 에러 : ", err);
-            res.send("회원 가입 중 오류가 발생했습니다.");
-            return
+    const sql = `
+        INSERT INTO users(username, password, email)
+        VALUES ($1, $2, $3)
+    `;
+
+    db.query(sql, [username, password, email], (err) => {
+        if (err) {
+            console.error("회원 가입 오류:", err);
+            return res.status(500).json({
+                message: "회원 가입 중 오류가 발생했습니다."
+            });
         }
-        res.send("회원 가입이 성공적으로 이루어졌습니다.")
 
-    })
-})
+        return res.status(201).json({
+            message: "회원 가입이 완료되었습니다."
+        });
+    });
+});
 
 //회원 조회(로그인)
 
